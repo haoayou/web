@@ -1,394 +1,372 @@
 <?php
-include_once 'config.php';
-ini_set("error_reporting","E_ALL & ~E_NOTICE");
-//ini_set("error_reporting","E_ALL & ~E_NOTICE");
-date_default_timezone_set('Asia/Shanghai');
-$con = mysql_connect($mysql_server, $mysql_username, $mysql_password);
-if (!$con) {
-    die('Could not connect: ' . mysql_error());
-}
-mysql_query('set names \'utf8\'');
-mysql_select_db($mysql_db, $con);
-$token = $_GET['token'];
-$user = base64_decode(rc4($aqmy, $_POST['user']));
-$pass = base64_decode(rc4($aqmy, $_POST['pass']));
-$sql = "select * from cathy_admin where admin_user='{$user}' and admin_pass='{$pass}'";
-$res = mysql_query($sql);
-$rownum = @mysql_num_rows($res);
-if ($rownum == 1) {
-    if ($token == 'admin_up') {
-        admin_up();
-    }
-    if ($token == 'admin_del') {
-        admin_del();
-    }
-    if ($token == 'admin_list') {
-        user_list();
-    }
-    if ($token == 'admin_shuju') {
-        admin_shuju();
-    }
-    if ($token == 'admin_dqsj') {
-        admin_dqsj();
-    }
-    if ($token == 'admin_zcpd') {
-        admin_zcpd();
-    }
-    if ($token == 'admin_gg') {
-        admin_gg();
-    }
-    if ($token == 'admin_szbbh') {
-        admin_szbbh();
-    }
-    if ($token == 'admin_zcmrsj') {
-        admin_zcmrsj();
-    }
-    if ($token == 'admin_tjczk') {
-        admin_tjczk();
-    }
-    if ($token == 'admin_scczk') {
-        admin_scczk();
-    }
-    if ($token == 'admin_dqczk') {
-        admin_dqczk();
-    }
-    if ($token == 'admin_dlxz') {
-        admin_dlxz();
-    }
-    if ($token == 'admin_hmdjqm') {
-        admin_hmdjqm();
-    }
-    if ($token == 'admin_scjqm') {
-        admin_scjqm();
-    }
-    if ($token == 'admin_dqhmdyhm') {
-        admin_dqhmdyhm();
-    }
-    if ($token == 'admin_schmdyhm') {
-        admin_schmdyhm();
-    }
-    if ($token == 'admin_tjhmdyhm') {
-        admin_tjhmdyhm();
-    }
-    if ($token == 'admin_tjhmdjqm') {
-        admin_tjhmdjqm();
-    }
-    if ($token == 'admin_cjmm') {
-        admin_cjmm();
-    }
-} else {
-    echo 'ç®¡ç†å‘˜è´¦æˆ·å¯†ç é”™è¯¯ï¼';
-}
-function admin_up()
+//¼ÓÃÜ·½Ê½£ºphpjm¼ÓÃÜ£¬´úÂë»¹Ô­ÂÊ100%¡£
+//´Ë³ÌÐòÓÉ¡¾ÕÒÔ´Âë¡¿http://Www.ZhaoYuanMa.Com (VIP»áÔ±¹¦ÄÜ£©ÔÚÏßÄæÏò»¹Ô­£¬QQ£º7530782 
+?>
+?<?php
+include_once('config.php');
+include_once('ABC.php');
+date_default_timezone_set ('Asia/Shanghai');
+$con = mysql_connect($mysql_server,$mysql_username,$mysql_password);
+if (!$con) 
 {
-    $id = string_exist(trim($_POST['id']));
-    $newspass = string_exist(trim($_POST['newpass']));
-    $sql = "update cathy_user set cathy_mima='{$newspass}' where id='{$id}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'ä¿®æ”¹æˆåŠŸ';
-    } else {
-        echo 'ä¿®æ”¹å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	die('Could not connect: ' . mysql_error());
 }
-function admin_cjmm()
+mysql_query("set names 'utf8'");
+mysql_select_db($mysql_db,$con);
+$token=$_GET['token'];
+$user=base64_decode(rc4($aqmy,$_POST['user']));
+$pass=base64_decode(rc4($aqmy,$_POST['pass']));
+$sql="select * from cathy_admin where admin_user='$user' and admin_pass='$pass'";
+$res=mysql_query($sql);
+$rownum= @mysql_num_rows($res);
+if($rownum==1) 
 {
-    $id = string_exist(trim($_POST['id']));
-    $newspass = string_exist(trim($_POST['newpass']));
-    $sql = "update cathy_user set cathy_cjmm='{$newspass}' where id='{$id}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'ä¿®æ”¹è¶…çº§å¯†ç æˆåŠŸ';
-    } else {
-        echo 'ä¿®æ”¹è¶…çº§å¯†ç å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	if($token=='admin_up') 
+	{
+		admin_up();
+	}
+	if($token=='admin_del') 
+	{
+		admin_del();
+	}
+	if($token=='admin_list') 
+	{
+		user_list();
+	}
+	if($token=='admin_shuju') 
+	{
+		admin_shuju();
+	}
+	if($token=='admin_dqsj') 
+	{
+		admin_dqsj();
+	}
+	if($token=='admin_zcpd') 
+	{
+		admin_zcpd();
+	}
+	if($token=='admin_gg') 
+	{
+		admin_gg();
+	}
+	if($token=='admin_szbbh') 
+	{
+		admin_szbbh();
+	}
+	if($token=='admin_zcmrsj') 
+	{
+		admin_zcmrsj();
+	}
+	if($token=='admin_tjczk') 
+	{
+		admin_tjczk();
+	}
+	if($token=='admin_scczk') 
+	{
+		admin_scczk();
+	}
+	if($token=='admin_dqczk') 
+	{
+		admin_dqczk();
+	}
+	if($token=='admin_dlxz') 
+	{
+		admin_dlxz();
+	}
+	if($token=='admin_hmdjqm') 
+	{
+		admin_hmdjqm();
+	}
+	if($token=='admin_scjqm') 
+	{
+		admin_scjqm();
+	}
+	if($token=='admin_dqhmdyhm') 
+	{
+		admin_dqhmdyhm();
+	}
+	if($token=='admin_schmdyhm') 
+	{
+		admin_schmdyhm();
+	}
+	if($token=='admin_tjhmdyhm') 
+	{
+		admin_tjhmdyhm();
+	}
 }
-function admin_del()
+else 
 {
-    $user = string_exist(trim($_POST['vuser']));
-    $sql = "delete from cathy_user where cathy_user='{$user}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'åˆ é™¤æˆåŠŸ';
-    } else {
-        echo 'åˆ é™¤å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	echo '¹ÜÀíÔ±ÕË»§ÃÜÂë´íÎó£¡';
 }
-function user_list()
+function admin_up() 
 {
-    $sql = 'select * from cathy_user order by id desc';
-    $res = mysql_query($sql);
-    while ($row = mysql_fetch_array($res)) {
-        echo 'id:' . $row['id'] . ' user:' . $row['cathy_user'] . ' pass:' . $row['cathy_mima'] . ' time:' . $row['cathy_zcsj'] . ' cjmm:' . $row['cathy_cjmm'] . 'daoqi:' . $row['cathy_dqsj'] . "jiqima:".$row['jiqima'].'ä¸¨';
-        mysql_close($con);
-    }
+	$id= string_exist(trim($_POST['id']));
+	$newspass= string_exist(trim($_POST['newpass']));
+	$sql="update cathy_user set cathy_mima='$newspass' where id='$id'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÐÞ¸Ä³É¹¦";
+	}
+	else 
+	{
+		echo 'ÐÞ¸ÄÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_shuju()
+function admin_del() 
 {
-    $fanhuishuju = $_POST['shuju'];
-    $sql = "update cathy_shuju set shujua='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$user= string_exist(trim($_POST['vuser']));
+	$sql="delete from cathy_user where cathy_user='$user'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "É¾³ý³É¹¦";
+	}
+	else 
+	{
+		echo 'É¾³ýÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_dqsj()
+function user_list() 
 {
-    $vuser = string_exist(trim($_POST['vuser']));
-    $daoqishijian = string_exist(trim($_POST['shijian']));
-    $sql = "update cathy_user set cathy_dqsj='{$daoqishijian}' where cathy_user='{$vuser}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$sql="select * from cathy_user order by id desc";
+	$res=mysql_query($sql);
+	while($row=mysql_fetch_array($res)) 
+	{
+		echo "id:".$row['id'] ." user:". $row['cathy_user']." pass:".$row['cathy_mima']." time:".$row['cathy_zcsj']." cjmm:".$row['cathy_cjmm']."daoqi:".$row['cathy_dqsj']."Ø­";
+		mysql_close($con);
+	}
 }
-function admin_zcpd()
+function admin_shuju() 
 {
-    $fanhuishuju = string_exist(trim($_POST['zcpd']));
-    $sql = "update cathy_shuju set kaiqizhuce='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= $_POST['shuju'];
+	$sql="update cathy_shuju set shujua='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_gg()
+function admin_dqsj() 
 {
-    $fanhuishuju = string_exist(trim($_POST['xggg']));
-    $sql = "update cathy_shuju set gonggao='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$vuser= string_exist(trim($_POST['vuser']));
+	$daoqishijian= string_exist(trim($_POST['shijian']));
+	$sql="update cathy_user set cathy_dqsj='$daoqishijian' where cathy_user='$vuser'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_zcmrsj()               //æ³¨å†Œèµ é€
+function admin_zcpd() 
 {
-    $fanhuishuju = string_exist(trim($_POST['sj']));
-    $sql = "update cathy_shuju set zcsysj='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= string_exist(trim($_POST['zcpd']));
+	$sql="update cathy_shuju set kaiqizhuce='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_szbbh()
+function admin_gg() 
 {
-    $fanhuishuju = string_exist(trim($_POST['bbh']));
-    $xgdz = string_exist(trim($_POST['gxdz']));
-    $sql = "update cathy_shuju set bbh='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    $sql = "update cathy_shuju set gxdz='{$xgdz}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= string_exist(trim($_POST['xggg']));
+	$sql="update cathy_shuju set gonggao='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_tjczk()
+function admin_zcmrsj() 
 {
-    $tianshu = string_exist(trim($_POST['tianshu']));
-    $kahao = string_exist(trim($_POST['kahao']));
-    $sql = "insert into `cathy_czk` ( `cathy_tianshu`, `cathy_kahao` ) values (  '{$tianshu}',  '{$kahao}')";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'æ·»åŠ æˆåŠŸ';
-    } else {
-        echo 'æ·»åŠ å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= string_exist(trim($_POST['sj']));
+	$sql="update cathy_shuju set zcsysj='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_scczk()
+function admin_szbbh() 
 {
-    $kahao = string_exist(trim($_POST['kahao']));
-    $sql = "delete from cathy_czk where cathy_kahao='{$kahao}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'åˆ é™¤æˆåŠŸ';
-    } else {
-        echo 'åˆ é™¤å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= string_exist(trim($_POST['bbh']));
+	$xgdz= string_exist(trim($_POST['gxdz']));
+	$sql="update cathy_shuju set bbh='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	$sql="update cathy_shuju set gxdz='$xgdz' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_dqczk()
+function admin_tjczk() 
 {
-    $sql = 'select * from cathy_czk order by cathy_kahao desc';
-    $res = mysql_query($sql);
-    while ($row = mysql_fetch_array($res)) {
-        echo 'å¤©æ•°:' . $row['cathy_tianshu'] . ' å¡å·:' . $row['cathy_kahao'] . ' ä½¿ç”¨è€…:' . $row['Cathy_syz'] . ' ä½¿ç”¨æ—¶é—´:' . $row['Cathy_sysj'] . 'ä¸¨';
-        mysql_close($con);
-    }
+	$tianshu= string_exist(trim($_POST['tianshu']));
+	$kahao= string_exist(trim($_POST['kahao']));
+	$sql= "insert into `cathy_czk` ( `cathy_tianshu`, `cathy_kahao` ) values (  '$tianshu',  '$kahao')";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "Ìí¼Ó³É¹¦";
+	}
+	else 
+	{
+		echo 'Ìí¼ÓÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_dlxz()
+function admin_scczk() 
 {
-    $fanhuishuju = string_exist(trim($_POST['fzs']));
-    $sql = "update cathy_shuju set jiqimapd='{$fanhuishuju}' where id='1'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'è®¾ç½®æˆåŠŸ';
-    } else {
-        echo 'è®¾ç½®å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$kahao= string_exist(trim($_POST['kahao']));
+	$sql="delete from cathy_czk where cathy_kahao='$kahao'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "É¾³ý³É¹¦";
+	}
+	else 
+	{
+		echo 'É¾³ýÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_hmdjqm()
+function admin_dqczk() 
 {
-    $sql = 'select * from cathy_hmdjqm order by cathy_jqm desc';
-    $res = mysql_query($sql);
-    while ($row = mysql_fetch_array($res)) {
-        echo 'hmdjqm:' . $row['cathy_jqm'] . ' shijian:' . $row['cathy_SJ'] . ' IP:' . $row['cathy_IP'] . ' yuanyin:' . $row['cathy_yy'] . ' ***';
-        mysql_close($con);
-    }
+	$sql="select * from cathy_czk order by cathy_kahao desc";
+	$res=mysql_query($sql);
+	while($row=mysql_fetch_array($res)) 
+	{
+		echo "ÌìÊý:".$row['cathy_tianshu'] ." ¿¨ºÅ:". $row['cathy_kahao']." Ê¹ÓÃÕß:".$row['Cathy_syz']." Ê¹ÓÃÊ±¼ä:".$row['Cathy_sysj']."Ø­";
+		mysql_close($con);
+	}
 }
-function admin_scjqm()  //åˆ é™¤æœºå™¨ç 
+function admin_dlxz() 
 {
-    $jiqima = string_exist(trim($_POST['jiqima']));
-    $sql = "delete from cathy_hmdjqm where cathy_jqm='{$jiqima}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'åˆ é™¤æˆåŠŸ';
-    } else {
-        echo 'åˆ é™¤å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$fanhuishuju= string_exist(trim($_POST['fzs']));
+	$sql="update cathy_shuju set jiqimapd='$fanhuishuju' where id='1'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "ÉèÖÃ³É¹¦";
+	}
+	else 
+	{
+		echo 'ÉèÖÃÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_dqhmdyhm()   //è¯»å–é»‘åå•ç”¨æˆ·å
+function admin_hmdjqm() 
 {
-    $sql = 'select * from cathy_hmdyhm order by cathy_yhm desc';
-    $res = mysql_query($sql);
-    while ($row = mysql_fetch_array($res)) {
-        echo 'hmdyhm:' . $row['cathy_yhm'] . ' ***'.'ä¸¨';
-        mysql_close($con);
-    }
+	$sql="select * from cathy_hmdjqm order by cathy_jqm desc";
+	$res=mysql_query($sql);
+	while($row=mysql_fetch_array($res)) 
+	{
+		echo "hmdjqm:".$row['cathy_jqm'] ." QQ:". $row['cathy_SJ']." IP:".$row['cathy_IP']." yuanyin:".$row['cathy_yy']." ***";
+		mysql_close($con);
+	}
 }
-function admin_schmdyhm()   //åˆ é™¤é»‘åå•ç”¨æˆ·å
+function admin_scjqm() 
 {
-    $yonghuming = string_exist(trim($_POST['yhm']));
-    $sql = "delete from cathy_hmdyhm where cathy_yhm='{$yonghuming}'";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'åˆ é™¤æˆåŠŸ';
-    } else {
-        echo 'åˆ é™¤å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$jiqima= string_exist(trim($_POST['jiqima']));
+	$sql="delete from cathy_hmdjqm where cathy_jqm='$jiqima'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "É¾³ý³É¹¦";
+	}
+	else 
+	{
+		echo 'É¾³ýÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function admin_tjhmdyhm() //æ·»åŠ é»‘åå•ç”¨æˆ·å
+function admin_dqhmdyhm() 
 {
-    $yhm = string_exist(trim($_POST['yhm']));
-    $sql = "insert into `cathy_hmdyhm` ( `cathy_yhm` ) values (  '{$yhm}')";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'æ·»åŠ æˆåŠŸ';
-    } else {
-        echo 'æ·»åŠ å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$sql="select * from cathy_hmdyhm order by cathy_yhm desc";
+	$res=mysql_query($sql);
+	while($row=mysql_fetch_array($res)) 
+	{
+		echo "hmdyhm:".$row['cathy_yhm'] ." ***";
+		mysql_close($con);
+	}
 }
-function admin_tjhmdjqm()  //æ·»åŠ é»‘åå•æœºå™¨ç 
+function admin_schmdyhm() 
 {
-    $jqm = string_exist(trim($_POST['jqm']));
-	$SJ = date("Y-m-d H:i:s");
-	$yuanyin='358AEFF3DEE78284D18EC8';
-    $IP='NO';
-    $sql= "insert into `cathy_hmdjqm` ( `cathy_jqm`, `cathy_SJ`, `cathy_IP`, `cathy_yy` ) values (  '$jqm',  '$SJ',  '$IP',  '$yuanyin')";
-    $res = mysql_query($sql);
-    if ($res) {
-        echo 'æ·»åŠ æˆåŠŸ';
-    } else {
-        echo 'æ·»åŠ å¤±è´¥';
-    }
-    mysql_close($con);
-    unset($res);
+	$yonghuming= string_exist(trim($_POST['yhm']));
+	$sql="delete from cathy_hmdyhm where cathy_yhm='$yonghuming'";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "É¾³ý³É¹¦";
+	}
+	else 
+	{
+		echo 'É¾³ýÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function rc4($pwd, $data)
+function admin_tjhmdyhm() 
 {
-    $key[] = '';
-    $box[] = '';
-    $pwd_length = strlen($pwd);
-    $data_length = strlen($data);
-    for ($i = 0; $i < 256; $i++) {
-        $key[$i] = ord($pwd[$i % $pwd_length]);
-        $box[$i] = $i;
-    }
-    for ($j = $i = 0; $i < 256; $i++) {
-        $j = ($j + $box[$i] + $key[$i]) % 256;
-        $tmp = $box[$i];
-        $box[$i] = $box[$j];
-        $box[$j] = $tmp;
-    }
-    for ($a = $j = $i = 0; $i < $data_length; $i++) {
-        $a = ($a + 1) % 256;
-        $j = ($j + $box[$a]) % 256;
-        $tmp = $box[$a];
-        $box[$a] = $box[$j];
-        $box[$j] = $tmp;
-        $k = $box[($box[$a] + $box[$j]) % 256];
-        $cipher .= chr(ord($data[$i]) ^ $k);
-    }
-    return $cipher;
+	$yhm= string_exist(trim($_POST['yhm']));
+	$sql= "insert into `cathy_hmdyhm` ( `cathy_yhm` ) values (  '$yhm')";
+	$res= mysql_query($sql);
+	if($res) 
+	{
+		echo "Ìí¼Ó³É¹¦";
+	}
+	else 
+	{
+		echo 'Ìí¼ÓÊ§°Ü';
+	}
+	mysql_close($con);
+	unset($res);
 }
-function stringToHex($s)
-{
-    $r = '';
-    $hexes = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-    for ($i = 0; $i < strlen($s); $i++) {
-        $r .= $hexes[ord($s[$i]) >> 4] . $hexes[ord($s[$i]) & 15];
-    }
-    return $r;
-}
-function string_exist($str, $type = 0)
-{
-    if (empty($str)) {
-        return false;
-    }
-    if ($type == 1 || $type == 0) {
-        $str = str_replace('\'', '', $str);
-        $str = str_replace('union', '', $str);
-        $str = str_replace('join', '', $str);
-        $str = str_replace('where', '', $str);
-        $str = str_replace('insert', '', $str);
-        $str = str_replace('delete', '', $str);
-        $str = str_replace('update', '', $str);
-        $str = str_replace('like', '', $str);
-        $str = str_replace('drop', '', $str);
-        $str = str_replace('create', '', $str);
-        $str = str_replace('modify', '', $str);
-        $str = str_replace('rename', '', $str);
-    }
-    if ($type == 2 || $type == 0) {
-    }
-    return $str;
-}
+
+?>

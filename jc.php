@@ -2,13 +2,14 @@
 //加密方式：phpjm加密，代码还原率100%。
 
 //发现了time,请自行验证这套程序是否有时间限制.
-//此程序由【找源码】http://Www.ZhaoYuanMa.Com (VIP会员功能）在线逆向还原，QQ：7530782 
+//此程序由【找源码】http://Www.ZhaoYuanMa.Com (VIP会员功能）在线逆向还原，QQ：7530782
 ?>
-?<?php
+<?php
 include_once('config.php');
+include_once('ABC.php');
 date_default_timezone_set ('Asia/Shanghai');
 $con = mysql_connect($mysql_server,$mysql_username,$mysql_password);
-if (!$con) 
+if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
@@ -61,51 +62,5 @@ else
 		}
 	}
 }
-function rc4 ($pwd, $data) 
-{
-	$key[] ="";
-	$box[] ="";
-	$pwd_length = strlen($pwd);
-	$data_length = strlen($data);
-	for ($i = 0; $i < 256; $i++) 
-	{
-		$key[$i] = ord($pwd[$i % $pwd_length]);
-		$box[$i] = $i;
-	}
-	for ($j = $i = 0; $i < 256; $i++) 
-	{
-		$j = ($j + $box[$i] + $key[$i]) % 256;
-		$tmp = $box[$i];
-		$box[$i] = $box[$j];
-		$box[$j] = $tmp;
-	}
-	for ($a = $j = $i = 0; $i < $data_length; $i++) 
-	{
-		$a = ($a + 1) % 256;
-		$j = ($j + $box[$a]) % 256;
-		$tmp = $box[$a];
-		$box[$a] = $box[$j];
-		$box[$j] = $tmp;
-		$k = $box[(($box[$a] + $box[$j]) % 256)];
-		$cipher .= chr(ord($data[$i]) ^ $k);
-	}
-	return $cipher;
-}
-function stringToHex ($s) 
-{
-	$r = "";
-	$hexes = array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
-	for ($i=0; $i<strlen($s);
-	$i++) 
-	{
-		$r .= ($hexes [(ord($s
-		{
-			$i}
-		) >> 4)] . $hexes [(ord($s
-		{
-			$i}
-		) & 0xf)]);
-	}
-	return $r;
-}
+
 ?>
